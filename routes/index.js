@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/user.js');
 var crypto = require('crypto');
 var Post = require('../models/post.js');
+var logger = require('../models/logHelper.js').helper;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -44,16 +45,16 @@ router.post('/reg',function (req,res) {
 		}
 		if(err){
 			req.flash('error',err);;
-			console.log("err");
+			logger.writeErr("",err);
 			return res.redirect('/reg');
 		}
-		console.log("save");
+		logger.writeDebug("save");
 		//如果不存在则新增用户
 		newUser.save(function (err) {
 			if(err){
 				req.flash('error',err);
-				console.log("save err");
-				console.log(err);
+				logger.writeDebug("save err");
+				logger.writeErr("",err);
 				return res.redirect('/reg');
 			}
 			req.session.user = newUser;
@@ -123,6 +124,7 @@ router.post('/post',function (req,res) {
 
 		req.flash('success','发表成功');
 		console.log(currentUser);
+		logger.writeDebug(currentUser);
 		res.redirect('/u/'+currentUser.name);
 	});
 });
