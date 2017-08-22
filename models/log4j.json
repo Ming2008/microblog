@@ -1,0 +1,38 @@
+{
+  "appenders":{
+    "out":{
+      "type":"console",
+      "replaceConsole":true
+    } ,
+    "everything":{
+      "type":"dateFile",
+      "filename":"./logs/microblog_file",
+      "pattern":"_yyyy-MM-dd.log",
+      "alwaysIncludePattern": true,
+      "compress":true,
+      "daysToKeep":30
+    }  
+  },
+  "categories":{
+    "default":{
+        "appenders":["out","everything"],
+        "level":"Info"
+    },
+    "logDebug":{
+      "appenders":["out"],
+      "level":"debug"
+    },
+    "logErr":{
+      "appenders":["out","everything"],
+      "level":"error"
+    },
+    "logWarn":{
+      "appenders":["out","everything"],
+      "level":"warn"
+    },
+    "logInfo":{
+      "appenders":["everything"],
+      "level":"info"
+    }
+  }
+}
