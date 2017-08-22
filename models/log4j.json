@@ -6,7 +6,7 @@
     } ,
     "everything":{
       "type":"dateFile",
-      "filename":"logs/microblog_file",
+      "filename":"./logs/microblog_file",
       "pattern":"_yyyy-MM-dd.log",
       "alwaysIncludePattern": true,
       "compress":true,
